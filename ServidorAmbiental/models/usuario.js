@@ -17,26 +17,35 @@ var UsuarioEsquema = new Esquema({
         lowercase: true,
         maxlength: 20,
         trim: true,
-        // required = true,
+        tags: { type: [String], index: true },
+        required: [true, 'username es necesario'],
+        unique: true
     },
     password: {
         type: String,
-        // required = 'La contraseña es necesaria',
+        required: [true, 'La contraseña es necesaria']
     },
-    primernombre: String,
-    segundonombre: String,
+    nombre: {
+        type: String,
+        maxlength: 50,
+        trim: true,
+        lowercase: true,
+    },
     primerapellido: {
         type: String,
         maxlength: 50,
         trim: true,
         lowercase: true,
         unique: true,
+        tags: { type: [String], index: true },
     },
     segundoapellido: {
         type: String,
         maxlength: 50,
         trim: true,
         lowercase: true,
+        unique: true,
+        tags: { type: [String], index: true },
     },
     correo: {
         type: String,
@@ -44,9 +53,11 @@ var UsuarioEsquema = new Esquema({
         trim: true,
         lowercase: true,
         unique: true,
-        // required: 'La dirección de Correo es necesaria',
+        required: [true, 'La dirección de Correo es necesaria'],
         validate: [validateEmail, 'Por favor complete con una dirección de correo válida'],
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Por favor complete con una dirección de correo válida']
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Por favor complete con una dirección de correo válida'],
+        tags: { type: [String], index: true },
+        unique: true
     },
     telcontacto: {
         type: String,
@@ -56,8 +67,9 @@ var UsuarioEsquema = new Esquema({
         unique: true,
         validate: [validateTel, 'Por favor complete con un Nùmero de Telèfono vàlido'],
         match: [/^[2-9]\d{2}[2-9]\d{2}\d{4}$/, 'Por favor complete con un Nùmero de Telèfono vàlido']
-    }
-
+    },
+    updated: { type: Date, default: Date.now },
+    created: { type: Date, default: Date.now },
 
 });
 
