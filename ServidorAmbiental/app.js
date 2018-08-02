@@ -6,11 +6,12 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var mongoose = require('mongoose');
-var config = require('./config');
-var db = mongoose.connect('mongodb://localhost:27017/claseServidor');
-mongoose.connection.on('error', () => { console.log("Base de datos en problemas") })
-mongoose.connection.once('open', () => { console.log("Se ha conectado correctamente") })
+var puntoReciclaje=require('./routes/puntoReciclajeRouter');
+var mongoose=require('mongoose');
+var config=require('./config');
+var db=mongoose.connect('mongodb://localhost:27017/claseServidor');
+mongoose.connection.on('error',()=>{console.log("Base de datos en problemas")})
+mongoose.connection.once('open',()=>{console.log("Se ha conectado correctamente")})
 
 var app = express();
 
@@ -26,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/puntosRecoleccion',puntoReciclaje);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
