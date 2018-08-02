@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-var authenticate = require('../authenticate');
+
 const puntoReciclajeRouter = express.Router();
 
 puntoReciclajeRouter.use(bodyParser.json());
@@ -11,7 +11,7 @@ puntoReciclajeRouter.route('/')
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
-.get(authenticate.verifyUser,(req,res,next) => {
+.get((req,res,next) => {
     res.end('Este metodo retornara los puntos de recoleccion en la ciudad');
 })
 .post((req, res, next) => {
