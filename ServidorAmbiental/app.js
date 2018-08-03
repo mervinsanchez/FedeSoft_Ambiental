@@ -4,18 +4,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
-var mongoose=require('mongoose');
+var mongoose = require('mongoose');
 
-var config=require('./config');
+var passport = require('passport');
+var mongoose = require('mongoose');
+var config = require('./config');
 var authenticate = require('./authenticate');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var puntoReciclaje=require('./routes/puntoReciclajeRouter');
+var puntoReciclaje = require('./routes/puntoReciclajeRouter');
 
-//var db=mongoose.connect('mongodb://localhost:27017/claseServidor');
-var db=mongoose.connect(config.mongoUrl);
-mongoose.connection.on('error',()=>{console.log("Base de datos en problemas")})
-mongoose.connection.once('open',()=>{console.log("Se ha conectado correctamente")})
+var db = mongoose.connect(config.mongoUrl);
+mongoose.connection.on('error', () => { console.log("Base de datos en problemas") })
+mongoose.connection.once('open', () => { console.log("Se ha conectado correctamente") })
 
 var app = express();
 
@@ -29,17 +31,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// required for passport
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session()); // persistent login sessions
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/puntosRecoleccion',puntoReciclaje);
+app.use('/puntosRecoleccion', puntoReciclaje);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -52,5 +59,6 @@ app.use(function(err, req, res, next) {
     // res.render('error');
     res.json(err);
 });
+
 
 module.exports = app;

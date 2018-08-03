@@ -1,4 +1,4 @@
-module.exports={
-    'secretKey': '123456-AAABB-78689-CCDDDEE',
-    'mongoUrl' : 'mongodb://localhost:27017/servidorAmbiental',
+module.exports = {
+    'secretKey': '1234-PEPE-ROSA-ilovescotchscotchyscotchscotch',
+    'mongoUrl': 'mongodb://localhost:27017/servidorAmbiental',
 }
