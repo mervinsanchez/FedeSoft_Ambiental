@@ -57,8 +57,7 @@ var UsuarioEsquema = new Esquema({
         required: [true, 'La dirección de Correo es necesaria !!'],
         validate: [validateEmail, 'Por favor complete con una dirección de correo válida'],
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Por favor complete con una dirección de correo válida'],
-        tags: { type: [String], index: true },
-        unique: true
+        tags: { type: [String], index: true }
     },
     telcontacto: {
         type: String,

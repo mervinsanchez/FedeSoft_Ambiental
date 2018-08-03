@@ -5,7 +5,6 @@
 ```
 npm install passport passport-local passport-local-mongoose --save
 ```
-
 ```javascript
 var passportLocalMongoose = require('passport-local-mongoose');
 

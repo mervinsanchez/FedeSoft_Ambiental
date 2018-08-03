@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+var authenticate = require('../authenticate');
 const puntoReciclajeRouter = express.Router();
 
 var Authenticate = require('../authenticate')
