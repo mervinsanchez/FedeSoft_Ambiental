@@ -23,8 +23,8 @@ var UsuarioEsquema = new Esquema({
         unique: true
     },
     password: {
-        type: String,
-        required: [true, 'La contraseña es necesaria !!!']
+        type: String
+        //required: [true, 'La contraseña es necesaria !!!']
     },
     nombre: {
         type: String,
@@ -53,12 +53,11 @@ var UsuarioEsquema = new Esquema({
         maxlength: 50,
         trim: true,
         lowercase: true,
-        unique: true,
-        required: [true, 'La dirección de Correo es necesaria !!'],
-        validate: [validateEmail, 'Por favor complete con una dirección de correo válida'],
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Por favor complete con una dirección de correo válida'],
-        tags: { type: [String], index: true },
-        unique: true
+        //unique: true,
+        //required: [true, 'La dirección de Correo es necesaria !!'],
+        //validate: [validateEmail, 'Por favor complete con una dirección de correo válida'],
+        //match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Por favor complete con una dirección de correo válida'],
+        //tags: { type: [String], index: true }
     },
     telcontacto: {
         type: String,
@@ -74,8 +73,8 @@ var UsuarioEsquema = new Esquema({
     admin: {
         type: Boolean,
         default: false
-    }
-
+    },
+    facebookId: String
 });
-
+UsuarioEsquema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('Usuario', UsuarioEsquema);

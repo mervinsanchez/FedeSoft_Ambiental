@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
+var authenticate = require('../authenticate');
 var Usuario = require('../models/usuario');
 
 
@@ -71,5 +73,14 @@ router.post('/login', passport.authenticate('local'), (req, res, err) => {
     res.setHeader('Content-Type', 'application/json');
     res.json({ success: true, token: token, status: 'You are successfully logged in!' });
 });
+
+router.get('/facebook/token', passport.authenticate('facebook-token'), (req, res) => {
+    if (req.user) {
+      var token = authenticate.getToken({_id: req.user._id});
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json({success: true, token: token, status: 'Login con facebook :) '});
+    }
+  });
 
 module.exports = router;
