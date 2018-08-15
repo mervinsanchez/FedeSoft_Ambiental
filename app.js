@@ -24,14 +24,17 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+/*app.all('*',(req,res)=>{
+    res.redirect('https://' + req.headers.host + req.url);
+});
 app.all('*',(req,res,next)=>{
     if(req.secure){
         console.log("estas en un sitio seguro");
-        //return next();
+        return next();
     }else{
         res.redirect(301,'https://'+req.hostname+req.url);
     }
-});
+});*/
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
