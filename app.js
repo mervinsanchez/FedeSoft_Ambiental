@@ -26,7 +26,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.all('*',(req,res,next)=>{
     if(req.secure){
-        return next;
+        return next();
     }else{
         res.redirect(301,'https://'+req.hostname+req.url);
     }
